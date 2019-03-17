@@ -45,7 +45,8 @@ Show examples of usage:
 ````
 
 ## Features
-List of features ready and TODOs for future development
+
+
 
 sr no	| model	| train_r2_score	| test_r2_score
 --- | --- | --- | ---|
