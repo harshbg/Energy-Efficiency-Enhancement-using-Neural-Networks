@@ -11,7 +11,6 @@ The entire summary of the project can be found in the [Jupyter Notebook](https:/
 * [Code Examples](#code-examples)
 * [Features](#features)
 * [Status](#status)
-* [Inspiration](#inspiration)
 * [Contact](#contact)
 
 ## General info
@@ -118,13 +117,13 @@ sr no	| model	| train_r2_score	| test_r2_score
 7	| KNN Adaboost	| 0.972943	| 0.929250
 8	| Adaboost_LinearSVM	| 0.896437	| 0.893522
 9	| Gradient Boosting Regressor	| 0.999541	| 0.996787
-10  | Logistic Reression | 0.875 0.88020833
+10  | Logistic Reression | 0.875 | 0.88020833
 11  | Linear SVC | 0.875 | 0.880208
 12  | SVM rbf | 0.970486 | 0.984375
 13  | Random Forest Classifier | 1.0 | 0.96875
-14  | Gradient Boosting Classifier | 1.0 | 0.9791666666666666
-15  | Neural Network Regression model | 0.8120563702859663 | 0.7998327631743293
-16  | Neural Network Classification model  | 0.9635416666666666 |  0.9635416666666666
+14  | Gradient Boosting Classifier | 1.0 | 0.979166
+15  | Neural Network Regression model | 0.812056| 0.799832
+16  | Neural Network Classification model  | 0.963541|  0.963541
 
 ## Status
 Project is: _finished_
