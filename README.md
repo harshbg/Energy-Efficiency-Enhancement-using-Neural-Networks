@@ -25,7 +25,7 @@ We have added the cooling load and heating load, which can define the overall lo
 
 ## Setup
 
-The dataset used and its metadata can be found in the [dataset](). 
+The dataset used and its metadata can be found in the [dataset](https://github.com/harshbg/Energy-Efficiency-Enhancement-using-Neural-Networks/tree/master/data). 
 The jupyter notebook can be downloaded [here](https://github.com/harshbg/Energy-Efficiency-Enhancement-using-Neural-Networks/blob/master/Energy%20Efficiency%20Analysis%20.ipynb) and can be used to reproduce the result. 
 Installation of TensorFlow would be required to run all the models. 
 You can find the instructions to install TensorFlow in [installation guide](https://www.tensorflow.org/install/pip).
@@ -41,12 +41,70 @@ You can find the instructions to install TensorFlow in [installation guide](http
 Show examples of usage:
 
 ````
+# Linear SVM
 
+param_grid = {"C": [1e0, 1e1, 1e2, 1e3, 1e4],"gamma": np.logspace(-2, 1, 2, 3, 5)}
+grid_search_svm = MultiOutputRegressor(GridSearchCV(SVR(kernel='linear'), param_grid, cv=10,return_train_score=True))
+
+grid_search_svm.fit(X_train, y_train)
+train_r2_score=r2_score(y_train,grid_search_svm.predict(X_train))
+test_r2_score=r2_score(y_test,grid_search_svm.predict(X_test))
+output = output.append(pd.Series({'model':'SVM Linear', 'train_r2_score':train_r2_score,'test_r2_score':test_r2_score}),ignore_index=True )
+output
+````
+
+````
+# Bagging ensembler using Decision Tree Regressor as base model
+
+from sklearn.ensemble import BaggingRegressor
+
+
+param_grid = {'max_samples':[5,10], 'max_features':[1,2,3,4,5,6,7]}
+bagging_DT = MultiOutputRegressor(GridSearchCV(BaggingRegressor(DecisionTreeRegressor(),n_estimators=750), 
+                                                          param_grid,cv= 10,return_train_score=True))
+
+bagging_DT.fit(X_train, y_train)
+train_r2_score=r2_score(y_train,bagging_DT.predict(X_train))
+test_r2_score=r2_score(y_test,bagging_DT.predict(X_test))
+output = output.append(pd.Series({'model':'Multi Output DT Bagging', 'train_r2_score':train_r2_score,'test_r2_score':test_r2_score}),ignore_index=True )
+output
+````
+
+````
+#Ada Boosting on Linear SVM regressor¶
+
+param =  { "n_estimators": [100,500,1000] }
+
+base_svr=SVR(kernel='linear')
+ada_svr = AdaBoostRegressor(base_estimator=base_svr,learning_rate = 0.7,random_state=10)
+adaboost_svr = MultiOutputRegressor(GridSearchCV(ada_svr,param_grid=param,n_jobs=-1),n_jobs=-1)
+adaboost_svr.fit(X_train, y_train)
+train_r2_score=r2_score(y_train,adaboost_svr.predict(X_train))
+test_r2_score=r2_score(y_test,adaboost_svr.predict(X_test))
+output = output.append(pd.Series({'model':'Adaboost_LinearSVM', 'train_r2_score':train_r2_score,'test_r2_score':test_r2_score}),ignore_index=True )
+output
+````
+
+````
+# Neural Network Classification model
+
+param_grid = {'epochs':[50, 200] , 'batch_size':[10, 50, 100]}
+
+model = KerasClassifier(build_fn = model_classifier , verbose = 0)
+
+grid_search_Keras_Class = GridSearchCV(model , param_grid , cv =10)
+
+grid_search_Keras_Class.fit(X_train_class, y_train)
+
+print('Best parameters for efficiency classification {}'.format(grid_search_Keras_Class.best_params_))
+
+from sklearn.metrics import accuracy_score
+print('The Train Accuracy score is',accuracy_score(y_train_class, grid_search_Keras_Class.predict(X_train_class)))
+print('The Test Accuracy score is',accuracy_score(y_test_class, grid_search_Keras_Class.predict(X_test_class)))
 ````
 
 ## Features
-
-
+The accuracies of various traing and testing models are as below: 
 
 sr no	| model	| train_r2_score	| test_r2_score
 --- | --- | --- | ---|
@@ -60,36 +118,17 @@ sr no	| model	| train_r2_score	| test_r2_score
 7	| KNN Adaboost	| 0.972943	| 0.929250
 8	| Adaboost_LinearSVM	| 0.896437	| 0.893522
 9	| Gradient Boosting Regressor	| 0.999541	| 0.996787
-
-
-
-
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
+10  | Logistic Reression | 0.875 0.88020833
+11  | Linear SVC | 0.875 | 0.880208
+12  | SVM rbf | 0.970486 | 0.984375
+13  | Random Forest Classifier | 1.0 | 0.96875
+14  | Gradient Boosting Classifier | 1.0 | 0.9791666666666666
+15  | Neural Network Regression model | 0.8120563702859663 | 0.7998327631743293
+16  | Neural Network Classification model  | 0.9635416666666666 |  0.9635416666666666
 
 ## Status
 Project is: _finished_
 
-
 ## Contact
 Created by me and my teammate [Siddharth Oza](https://github.com/siddharthoza).
-
 Feel free to contact me! My other projects can be found [here](http://www.gupta-harsh.com/projects/).
-
-
-## Goal: 
-
-
-
-## Data Set Information:
-We perform energy analysis using 12 different building shapes simulated in Ecotect. 
-The buildings differ with respect to the glazing area, the glazing area distribution, and the orientation, amongst other parameters. 
-We simulate various settings as functions of the afore-mentioned characteristics to obtain 768 building shapes. 
-The dataset comprises 768 samples and 8 features, aiming to predict two real valued responses. It can also be used as a multi-class classification problem if the response is rounded to the nearest integer.
-
-## Attribute Information:
-The dataset contains eight attributes (or features, denoted by X1...X8) and two responses (or outcomes, denoted by y1 and y2). The aim is to use the eight features to predict each of the two responses. 
-
-
-
