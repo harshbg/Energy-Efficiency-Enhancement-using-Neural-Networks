@@ -103,7 +103,8 @@ print('The Test Accuracy score is',accuracy_score(y_test_class, grid_search_Kera
 ````
 
 ## Features
-The accuracies of various traing and testing models are as below: 
+The training and testing scores af various models are as listed below: 
+
 
 sr no	| model	| train_r2_score	| test_r2_score
 --- | --- | --- | ---|
@@ -117,7 +118,7 @@ sr no	| model	| train_r2_score	| test_r2_score
 7	| KNN Adaboost	| 0.972943	| 0.929250
 8	| Adaboost_LinearSVM	| 0.896437	| 0.893522
 9	| Gradient Boosting Regressor	| 0.999541	| 0.996787
-10  | Logistic Reression | 0.875 | 0.88020833
+10  | Logistic Reression | 0.875 | 0.880208
 11  | Linear SVC | 0.875 | 0.880208
 12  | SVM rbf | 0.970486 | 0.984375
 13  | Random Forest Classifier | 1.0 | 0.96875
