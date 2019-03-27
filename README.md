@@ -16,7 +16,7 @@ The entire summary of the project can be found in the [Jupyter Notebook](https:/
 ## General info
 
 The goal of the study is to understand various machine learning classification algorithms and their performance. 
-We have added the cooling load and heating load, which can define the overall load of the apartment. We have studied the trend of overall load by dividing it into three classes. 
+We have added the cooling load and heating load, which can define the overall load of the apartment. We have studied the trend of the overall load by dividing it into three classes. 
 
 ## Technologies and Tools
 * Python 3.5
@@ -33,11 +33,11 @@ You can find the instructions to install TensorFlow in [installation guide](http
 
 * We have added the cooling load and heating load which will define the overall load of the apartment. 
 * We studied the trend of overall load and divided it into three classes, low efficient, high efficient and average efficient.
-* We first tried multioutput machine learning regressor models like KNN, logistic regression, random forest, decision tree, linear & kernalised SVM. 
+* We first tried multioutput machine learning regressor models like KNN, logistic regression, random forest, decision tree, linear & kernelized SVM. 
 * After that we created a neural network classification model to further increase the accuracy of the classification to 97%. 
 
 ## Code Examples
-Show examples of usage:
+Some examples of usage:
 
 ````
 # Linear SVM
@@ -131,4 +131,6 @@ Project is: _finished_
 
 ## Contact
 Created by me and my teammate [Siddharth Oza](https://github.com/siddharthoza).
-Feel free to contact me! My other projects can be found [here](http://www.gupta-harsh.com/projects/).
+
+If you loved what you read here and feel like we can collaborate to produce some exciting stuff, or if you
+just want to shoot a question, please feel free to connect with me on <a href="hello@gupta-harsh.com" target="_blank">email</a>, <a href="https://www.linkedin.com/in/harshbg/" target="_blank">LinkedIn</a>, or <a href="https://twitter.com/harshbg" target="_blank">Twitter</a>. My other projects can be found [here](http://www.gupta-harsh.com/projects/). My other projects can be found [here](http://www.gupta-harsh.com/projects/).
